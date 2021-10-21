@@ -76,7 +76,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', 
-        'NAME': 'djafffngo',
+        'NAME': 'naira_wallet',
         'USER': 'root',
         'PASSWORD': '6242',
         'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
