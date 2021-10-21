@@ -76,7 +76,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', 
-        'NAME': 'django',
+        'NAME': 'djafffngo',
         'USER': 'root',
         'PASSWORD': '6242',
         'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
