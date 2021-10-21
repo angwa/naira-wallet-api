@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'authentication',
 ]
 
 MIDDLEWARE = [
@@ -51,6 +52,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'config.urls'
+
+AUTH_USER_MODEL = 'authentication.User'
 
 TEMPLATES = [
     {
@@ -77,7 +80,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', 
-        'NAME': 'naira_wallet',
+        'NAME': 'naira-wallet',
         'USER': 'root',
         'PASSWORD': '6242',
         'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
