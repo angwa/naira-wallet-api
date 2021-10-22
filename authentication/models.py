@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 
 class User(AbstractUser):
+    class Meta:
+        db_table = 'users'
     username = None
     email = models.CharField(max_length=200,unique=True)
     address = models.TextField(max_length=1000, null=True)
