@@ -1,9 +1,6 @@
 from django.shortcuts import render
-from rest_framework import generics, serializers, permissions, status
-from rest_framework.views import APIView
+from rest_framework import generics, permissions, status
 from rest_framework_jwt.authentication import JSONWebTokenAuthentication
-from .models import User
-
 from .serializer import UserRegistrationSerializer,UserProfileSerializer
 from rest_framework.response import Response
 
@@ -19,7 +16,7 @@ class RegisterAPI(generics.GenericAPIView):
         return Response({
             "message":"Registation successful",
             "data": serializer.data,
-        })
+        }, status=status.HTTP_201_CREATED)
 class ProfileApi(generics.ListAPIView):
     permission_classes = [permissions.IsAuthenticated]
     authentication_class = JSONWebTokenAuthentication
