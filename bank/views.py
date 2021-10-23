@@ -1,3 +1,4 @@
+from django.db.models.fields import NullBooleanField
 from django.shortcuts import render
 from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 
@@ -11,6 +12,11 @@ class Bank(generics.GenericAPIView):
     permission_class = [permissions.IsAuthenticated]
     authentication_class = JSONWebTokenAuthentication
     def post(self, request):
+        
+        #User cannot add bank until they verify their BNV and phone number
+        if request.user.phone is None:
+            return Response({"message":"Please verify your bvn first"}) 
+
         serializer = BankSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
 
