@@ -1,5 +1,7 @@
+from django.db import models
 from rest_framework import serializers
 from .models import Wallet
+from authentication. models import User
 
 class WalletSerializer(serializers.ModelSerializer):
     class Meta:
@@ -9,3 +11,7 @@ class WalletSerializer(serializers.ModelSerializer):
     
 
     
+class ShowWalletSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Wallet 
+        fields = ('amount','freezed_at')

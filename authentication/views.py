@@ -3,8 +3,9 @@ from rest_framework import generics, permissions, serializers, status
 from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 
 from authentication.models import User
+from wallet.models import Wallet
 from .serializer import UserRegistrationSerializer,UserProfileSerializer
-from wallet.serializer import WalletSerializer
+from wallet.serializer import WalletSerializer, ShowWalletSerializer
 from rest_framework.response import Response
 
 
@@ -33,9 +34,12 @@ class ProfileApi(generics.ListAPIView):
 
     def get(self, request):
         serializer = UserProfileSerializer(request.user)
+        wallet_id = Wallet.objects.get(user_id=request.user.id)
+        wallet = ShowWalletSerializer(wallet_id)
+     
         response = {
             "status":status.HTTP_200_OK,
             "message":"User profile retrieved successfully",
-            "data":serializer.data,
+            "data":{"user":serializer.data, "wallet":wallet.data},
         }
         return Response(response)
