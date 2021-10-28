@@ -64,7 +64,7 @@ TERMII_SMS_URL = 'https://termii.com/api/sms/send'
 TERMI_SMS_SECRET_KEY = ''
 
 FLUTTER_WAVE_URL = 'https://api.flutterwave.com/v3'
-FLUTTER_WAVE_SECRET_KEY = '' #user your secret key
+FLUTTER_WAVE_SECRET_KEY = '' #user your secret key here
 
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
