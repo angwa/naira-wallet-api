@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'rest_framework',
     'authentication',
     'wallet',
-    'bank',
 ]
 
 MIDDLEWARE = [
@@ -59,6 +58,7 @@ REST_FRAMEWORK = {
        'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
 }
+
 
 TERMII_SMS_URL = 'https://termii.com/api/sms/send'
 TERMI_SMS_SECRET_KEY = ''
