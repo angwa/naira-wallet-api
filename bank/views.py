@@ -9,14 +9,17 @@ from .models import Bank as BankModel
 from rest_framework import permissions, serializers, status, generics
 
 class Bank(generics.GenericAPIView):
-    permission_class = [permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticated]
     authentication_class = JSONWebTokenAuthentication
     def post(self, request):
         
         #User cannot add bank until they verify their BNV and phone number
         if request.user.phone is None:
-            return Response({"message":"Please verify your bvn first"}) 
+            return Response({"message":"Please verify your phone first"}, status=status.HTTP_403_FORBIDDEN) 
 
+        if request.user.bvn is None:
+            return Response({"message":"Please verify your phone first"}, status=status.HTTP_403_FORBIDDEN) 
+        
         serializer = BankSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
 
@@ -27,6 +30,7 @@ class Bank(generics.GenericAPIView):
             "data":serializer.data
         }
         return Response(response, status=status.HTTP_201_CREATED)
+
     def get(self, request):
         banks = BankModel.objects.filter(user_id=request.user.id)
         serializer = BankSerializer(banks, many=True)
