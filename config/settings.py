@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
+from datetime import timedelta
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -37,6 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'authentication',
+    'wallet',
+    'bank',
 ]
 
 MIDDLEWARE = [
@@ -49,7 +54,26 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+       'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+}
+
+TERMII_SMS_URL = 'https://termii.com/api/sms/send'
+TERMI_SMS_SECRET_KEY = '' #use your termi secret key here
+
+FLUTTER_WAVE_URL = 'https://api.flutterwave.com/v3'
+FLUTTER_WAVE_SECRET_KEY = '' #use your secret key
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
+}
+
 ROOT_URLCONF = 'config.urls'
+
+AUTH_USER_MODEL = 'authentication.User'
 
 TEMPLATES = [
     {
@@ -76,7 +100,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', 
-        'NAME': 'naira_wallet',
+        'NAME': 'naira-wallet',
         'USER': 'root',
         'PASSWORD': '6242',
         'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
