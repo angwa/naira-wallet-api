@@ -12,17 +12,8 @@ class User(AbstractUser):
     updated_at = models.DateTimeField(auto_now_add=True)
     role_id = models.CharField(max_length=11, null = True)
     phone = models.CharField(max_length=11, null = True)
-    bvn = models.CharField(max_length=10, null = True)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['password']
 
 
-class OTP(models.Model):
-    class Meta:
-        db_table = 'otps'
-    user_id = models.CharField(max_length=11)
-    purpose = models.CharField(max_length=30,default="email_verification")
-    otp = models.IntegerField(unique=True)
-    data = models.CharField(max_length=100, null=True)
-    create_at = models.DateTimeField(auto_now_add=True)

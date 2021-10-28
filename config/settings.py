@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'rest_framework',
     'authentication',
     'wallet',
-    'bank',
 ]
 
 MIDDLEWARE = [
@@ -59,12 +58,6 @@ REST_FRAMEWORK = {
        'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
 }
-
-TERMII_SMS_URL = 'https://termii.com/api/sms/send'
-TERMI_SMS_SECRET_KEY = ''
-
-FLUTTER_WAVE_URL = 'https://api.flutterwave.com/v3'
-FLUTTER_WAVE_SECRET_KEY = '' #user your secret key
 
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
