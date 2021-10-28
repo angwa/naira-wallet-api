@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import User
+from .models import OTP, User
 
 class UserRegistrationSerializer(serializers.ModelSerializer):
     class Meta:
@@ -19,5 +19,9 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
 class UserProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('id','email','first_name', 'last_name','address', 'phone')
+        fields = ('id','email','first_name', 'last_name','address', 'phone','bvn','email_verified')
 
+class OtpSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = OTP
+        fields = ()
